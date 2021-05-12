@@ -1,0 +1,82 @@
+<section class="uk-padding uk-padding-remove-horizontal uk-padding-remove-top uk-margin-medium-bottom" id="module{{ module }}">
+	<div class="uk-container">
+		<div>
+			<!-- Block Title -->
+			{% if block_title and title %}<h3>{{ title }}</h3>{% endif %}
+			<!-- Tabs -->
+			{% if tabs|length > 1 %}
+				<ul id="tabs-{{ module }}" class="uk-margin-bottom uk-tab uk-tab-pill uk-flex-center uk-child-width-1-2 uk-child-width-auto@m" data-uk-switcher="animation: uk-animation-fade; connect: .tabs{{ module }};">
+					{% for keyTab, tab in tabs %}
+						{% if keyTab == 0 %}
+							<li class="uk-active"><a class="font" href="#tab{{ module }}{{ keyTab }}">{{ tab.title }}</a></li>
+						{% else %}
+							<li><a class="font" href="#tab{{ module }}{{ keyTab }}">{{ tab.title }}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			{% endif %}
+			<!-- Product Group(s) -->
+			<div class="uk-switcher tabs{{ module }}">
+				{% for key, tab in tabs %}
+					<div class="{% if key == 0 %}uk-active{% endif %}" id="tab{{ module }}{{ key }}">
+						<div class="uk-child-width-1-1 uk-child-width-1-{{ columns }}@m prod_module{{ module }}{% if columns == 'list' %} hor-list{% endif %}" data-uk-grid{% if carousel %} data-uk-slider{% endif %}>
+							{% for product in tab.products %}
+								<div>
+									<div>
+										<div class="uk-background-muted uk-border-rounded uk-padding-small uk-position-relative">
+											<div class="product-thumb">
+												<div class="image uk-margin-bottom"><a class="uk-display-block" href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="uk-width-1-1" /></a></div>
+												<div>
+													<div class="caption">
+														<h4 class="uk-margin-small-bottom"><a href="{{ product.href }}" class="uk-display-block uk-text-center uk-text-secondary uk-text-bold uk-margin-remove uk-h5 hover yellow font">{{ product.name }}</a></h4>
+														<p class="uk-hidden">{{ product.description }}</p>
+														{% if product.price %}
+															<div class="price uk-text-bold uk-text-center uk-margin-bottom font fnum">
+																{% if not product.special %}
+																	<span class="uk-text-success uk-text-small">{{ product.price }}</span>
+																{% else %}
+																	<div class="uk-flex uk-flex-middle uk-flex-center">
+																		<span class="price-old uk-text-muted uk-text-tiny uk-text-line-through uk-margin-small-left">{{ product.price }}</span>
+																		<span class="price-new uk-text-success uk-text-small">{{ product.special }}</span>
+																	</div>
+																{% endif %}
+																{% if product.tax %}
+																	<span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+																{% endif %}
+															</div>
+														{% endif %}
+														{% if product.rating %}
+															<div class="rating">
+																{% for i in 1..5 %}
+																	{% if product.rating < i %}
+																		<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+																	{% else %}
+																		<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+																	{% endif %}
+																{% endfor %}
+															</div>
+														{% endif %}
+													</div>
+													<div class="uk-position-absolute uk-background-muted uk-border-circle addToCartWrapper">
+														<span data-uk-spinner="ratio: 1.35" class="cartAddToggle{{ product.product_id }}" hidden></span>
+														<button type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');" class="uk-border-circle cartAddToggle{{ product.product_id }}" data-uk-tooltip="{{ button_cart }}"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#shopping-bag" width="16" height="16" class="uk-preserve-width" data-uk-svg></button>
+														<button data-uk-toggle="target: .cartAddToggle{{ product.product_id }}" id="toggler{{ product.product_id }}" hidden></button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="uk-hidden">
+									<button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i></button>
+									<button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i></button>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+{% if not carousel %}{% endif %}

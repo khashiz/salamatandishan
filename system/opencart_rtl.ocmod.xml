@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id>opencart rtl</id>
+	<name>opencart rtl</name>
+	<code>opencart_rtl</code>
+	<version>1.0</version>
+	<vqmver>Vqmver</vqmver>
+	<author>design.hostiran.net</author>
+	<link>https://git.hostiran.net/design/product/Shop-package/opencart/main/rtl-opencart/</link>
+
+	<file path="admin/controller/design/theme.php">
+		<operation>
+			<search><![CDATA[
+$this->document->setTitle($this->language->get('heading_title'));
+                            ]]></search>
+			<add position="after"><![CDATA[
+		$data['direction'] = $this->language->get('direction');
+                            ]]></add>
+		</operation>
+	</file>
+
+	<file path="admin/view/template/common/header.twig">
+		<operation>
+			<search><![CDATA[
+<script type="text/javascript" src="view/javascript/bootstrap/js/bootstrap.min.js"></script>
+                            ]]></search>
+			<add position="after"><![CDATA[
+{% if direction == 'rtl' %}
+<link href="view/stylesheet/bootstrap-rtl.css" type="text/css" rel="stylesheet" />
+<link href="view/javascript/font-awesome/css/font-awesome-rtl.min.css" type="text/css" rel="stylesheet" />
+{% else %}
+                            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+<link href="view/javascript/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+                            ]]></search>
+			<add position="after"><![CDATA[
+{% endif %}
+                            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+<link type="text/css" href="view/stylesheet/stylesheet.css" rel="stylesheet" media="screen" />
+                            ]]></search>
+			<add position="before"><![CDATA[
+{% if direction == 'rtl' %}
+<link type="text/css" href="view/stylesheet/stylesheet-rtl.css" rel="stylesheet" media="screen" />
+{% else %}
+                            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+<link type="text/css" href="view/stylesheet/stylesheet.css" rel="stylesheet" media="screen" />
+                            ]]></search>
+			<add position="after"><![CDATA[
+{% endif %}
+                            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+<script src="view/javascript/common.js" type="text/javascript"></script>
+                            ]]></search>
+			<add position="before"><![CDATA[
+{% if direction == 'rtl' %}
+<script src="view/javascript/common-rtl.js" type="text/javascript"></script>
+{% else %}
+                            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+<script src="view/javascript/common.js" type="text/javascript"></script>
+                            ]]></search>
+			<add position="after"><![CDATA[
+{% endif %}
+                            ]]></add>
+		</operation>
+	</file>
+
+	<file path="admin/view/template/design/theme.twig">
+		<operation>
+			<search><![CDATA[
+<link href="view/javascript/codemirror/lib/codemirror.css" rel="stylesheet" />
+                            ]]></search>
+			<add position="before"><![CDATA[
+{% if direction == 'rtl' %}
+  <link href="view/javascript/codemirror/lib/codemirror-rtl.css" rel="stylesheet" />
+{% else %}
+                            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+<link href="view/javascript/codemirror/lib/codemirror.css" rel="stylesheet" />
+                            ]]></search>
+			<add position="after"><![CDATA[
+{% endif %}
+                            ]]></add>
+		</operation>
+
+	</file>
+
+	<file path="admin/view/template/sale/order_invoice.twig">
+		<operation>
+			<search><![CDATA[
+<link href="view/javascript/bootstrap/css/bootstrap.css" rel="stylesheet" media="all" />
+                            ]]></search>
+			<add position="before"><![CDATA[
+{% if direction == 'rtl' %}
+<link href="view/javascript/bootstrap/css/bootstrap-rtl.css" rel="stylesheet" media="all" />
+{% else %}
+                            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+<link href="view/javascript/bootstrap/css/bootstrap.css" rel="stylesheet" media="all" />
+                            ]]></search>
+			<add position="after"><![CDATA[
+{% endif %}
+                            ]]></add>
+		</operation>
+
+	</file>
+
+	<file path="admin/view/template/sale/order_shipping.twig">
+		<operation>
+			<search><![CDATA[
+<link href="view/javascript/bootstrap/css/bootstrap.css" rel="stylesheet" media="all" />
+                            ]]></search>
+			<add position="before"><![CDATA[
+{% if direction == 'rtl' %}
+<link href="view/javascript/bootstrap/css/bootstrap-rtl.css" rel="stylesheet" media="all" />
+{% else %}
+                            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+<link href="view/javascript/bootstrap/css/bootstrap.css" rel="stylesheet" media="all" />
+                            ]]></search>
+			<add position="after"><![CDATA[
+{% endif %}
+                            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+<link href="view/javascript/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+                            ]]></search>
+			<add position="before"><![CDATA[
+{% if direction == 'rtl' %}
+<link href="view/javascript/font-awesome/css/font-awesome-rtl.min.css" type="text/css" rel="stylesheet" />
+<link type="text/css" href="view/stylesheet/stylesheet-rtl.css" rel="stylesheet" media="all" />
+{% else %
+                            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+<link type="text/css" href="view/stylesheet/stylesheet.css" rel="stylesheet" media="all" />
+                            ]]></search>
+			<add position="after"><![CDATA[
+{% endif %}
+                            ]]></add>
+		</operation>
+	</file>
+
+
+
+	<file path="">
+		<operation>
+			<search><![CDATA[
+if (in_array($this->session->data['currency'], $currencies)) {
+                            ]]></search>
+			<add position="before"><![CDATA[
+$currencies = array(
+							'TOM',
+							'RLS'
+						);
+                            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+$currency_code = 'USD';
+                            ]]></search>
+			<add position="before"><![CDATA[
+$currency_code = 'TOM';
+                            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[
+$currency_value = $this->currency->getValue('USD');
+                            ]]></search>
+			<add position="before"><![CDATA[
+$currency_value = $this->currency->getValue('TOM');
+                            ]]></add>
+		</operation>
+
+	</file>
+	<file path="system/engine/loader.php">
+		<operation>
+			<search><![CDATA[
+final class Loader {
+                            ]]></search>
+			<add position="before"><![CDATA[
+require_once(modification(DIR_SYSTEM . 'library/jdf.php'));
+                            ]]></add>
+		</operation>
+	</file>
+
+
+    <!--
+
+
+            <file path="">
+                <operation>
+                    <search><![CDATA[
+
+                            ]]></search>
+                    <add position="replace"><![CDATA[
+
+                            ]]></add>
+                </operation>
+            </file>
+
+
+            -->
+</modification>

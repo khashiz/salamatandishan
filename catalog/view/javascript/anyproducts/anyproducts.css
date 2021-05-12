@@ -1,0 +1,236 @@
+/* General */
+.anyp.grid-holder {
+	font-size:0;
+	margin:0 -15px;
+}
+.anyp.grid-holder .anyp-item {
+	font-size:12px;
+	display:inline-block;
+	vertical-align:top;
+	padding:0 15px 15px 15px;
+	width:25%;
+}
+.anyp.grid-holder.grid5 .anyp-item {
+	width:20%;
+}
+.anyp.grid-holder.grid3 .anyp-item {
+	width:33.33%;
+}
+.anyp.grid-holder.grid2 .anyp-item {
+	width:50%;
+}
+.anyp.grid-holder.grid1 .anyp-item {
+	width:100%;
+}
+.anyp.grid-holder.hor-list .anyp-item {
+	width:100% !important;
+}
+@media (max-width: 991px) {
+.anyp.grid-holder {
+	margin-left:-9px;
+	margin-right:-9px;
+}
+.anyp.grid-holder .anyp-item {
+	padding-left:9px;
+	padding-right:9px;
+}
+}
+.anyp.grid-holder.grid1 .anyp-item, 
+.anyp.grid-holder.gridlist .anyp-item {
+	width:100%;
+}
+.anyp.grid-holder.grid2 .anyp-item {
+	width:50%;
+}
+.anyp.grid-holder.grid3 .anyp-item {
+	width:33.33%;
+}
+.anyp.grid-holder.grid4 .anyp-item {
+	width:25%;
+}
+.anyp.grid-holder.grid5 .anyp-item {
+	width:20%;
+}
+.anyp.grid-holder.grid6 .anyp-item {
+	width:16.66%;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+.anyp.grid-holder.grid5 .anyp-item {
+	width:25%;
+}
+.anyp.grid-holder.grid6 .anyp-item {
+	width:20%;
+}	
+}
+@media (min-width: 768px) and (max-width: 991px) {
+.anyp.grid-holder.grid5 .anyp-item, 
+.anyp.grid-holder.grid4 .anyp-item {
+	width:33.33%;
+}
+.col-sm-8 .anyp.grid-holder.grid3 .anyp-item {
+	width:50%;
+}
+}
+@media (min-width: 590px) and (max-width: 767px) {
+.anyp.grid-holder.grid5 .anyp-item, 
+.anyp.grid-holder.grid4 .anyp-item {
+	width:33.33%;
+}
+}
+@media (max-width: 589px) {
+.anyp.grid-holder.grid5 .anyp-item, 
+.anyp.grid-holder.grid4 .anyp-item, 
+.anyp.grid-holder.grid3 .anyp-item {
+	width:50%;
+} 
+}
+/* Overwrite default theme */
+.anyp.grid-holder.hor-list .anyp-item {
+	padding:5px 15px;
+}
+.anyp.grid-holder.hor-list .product-thumb {
+	border:none;
+	display:table;
+	width:100%;
+}
+.anyp.grid-holder.hor-list .product-thumb .image {
+	display:table-cell;
+	padding-right:18px;
+}
+.anyp.grid-holder.hor-list .product-thumb .image a {
+	width:70px;
+}
+.anyp.grid-holder.hor-list .product-thumb .caption {
+	display:table-cell;
+	vertical-align:top;
+	width:100%;
+	padding:0;
+	min-height:90px;
+}
+.anyp.grid-holder.hor-list .product-layout h4 {
+	font-size:14px;
+	margin-top:2px;
+}
+.anyp.grid-holder.hor-list .product-layout p {
+	margin-bottom:7px;
+}
+.anyp.grid-holder.hor-list .product-layout .price-tax,
+.anyp.grid-holder.hor-list .product-layout .button-group {
+	display:none;
+}
+/* Default slick styles */
+.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+	opacity:1;
+	transition:opacity 600ms;
+}
+/* Slider */
+.tab-content.has-carousel > .tab-pane {
+    display: block;    
+    height: 0;   
+}
+.tab-content.has-carousel > .active {
+    height: auto;  
+}
+.tab-content.has-carousel > .tab-pane .carousel {
+	overflow:hidden;
+	height:0;
+}
+.document_ready .tab-content.has-carousel > .tab-pane.active .carousel {
+	height:auto;
+	overflow:visible;
+}
+.slick-list {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus {
+    outline: none;
+}
+.slick-list.dragging {
+    cursor: pointer;
+    cursor: hand;
+}
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+.slick-track:before,
+.slick-track:after {
+    display: table;
+    content: '';
+}
+.slick-track:after {
+    clear: both;
+}
+.slick-loading .slick-track {
+    visibility: hidden;
+}
+.slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+.slick-initialized .slick-slide {
+    display: block;
+	outline:none;
+}
+.slick-loading .slick-slide {
+    visibility: hidden;
+}
+.slick-vertical .slick-slide {
+    display: block;
+    height: auto;
+}
+.slick-arrow.slick-hidden {
+    display: none;
+}
+.carousel .arrow-left, 
+.carousel .arrow-right {
+	display:block;
+	cursor:pointer;
+	position:absolute;
+	z-index:8;
+	top:50%;
+	margin-top:-20px;
+	color:#111111;
+	font-size:22px;
+	width:40px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	background:#ffffff;
+	box-shadow:0 0 4px rgba(0,0,0,0.2);
+	opacity:0;
+	transition:opacity 500ms, left 500ms, right 500ms;
+}
+.carousel .arrow-left {left:0px;}
+.carousel .arrow-right {right:0px;}	
+.carousel:hover .arrow-left {left:30px;opacity:1;}
+.carousel:hover .arrow-right {right:30px;opacity:1;}	

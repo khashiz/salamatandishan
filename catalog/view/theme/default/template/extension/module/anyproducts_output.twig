@@ -1,0 +1,84 @@
+<div class="module{{ module }}"> 
+{% if block_title and title %}
+<!-- Block Title --> 
+<h3>{{ title }}</h3>
+{% endif %}
+{% if tabs|length > 1 %}
+<!-- Tabs -->
+<ul id="tabs-{{ module }}" class="nav nav-tabs" data-tabs="tabs">
+    {% for keyTab, tab in tabs %}
+        {% if keyTab == 0 %}
+        <li class="active"><a href="#tab{{ module }}{{ keyTab }}" data-toggle="tab">{{ tab.title }}</a></li>
+        {% else %}
+        <li><a href="#tab{{ module }}{{ keyTab }}" data-toggle="tab">{{ tab.title }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="tab-content has-carousel"{% if not carousel %} style="overflow:hidden;"{% endif %}">
+<!-- Product Group(s) -->
+{% for key, tab in tabs %}
+<div class="tab-pane{% if key == 0 %} active in{% endif %} fade" id="tab{{ module }}{{ key }}">
+	<div class="anyp grid-holder grid{{ columns }} prod_module{{ module }}{% if carousel %} carousel{% endif %}{% if columns == 'list' %} hor-list{% endif %}">
+		{% for product in tab.products %}
+			<div class="anyp-item">
+			  <div class="product-layout">
+				<div class="product-thumb transition">
+				  <div class="image"><a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a></div>
+				  <div class="caption">
+					<h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
+					<p>{{ product.description }}</p>
+					{% if product.rating %}
+					<div class="rating">{% for i in 1..5 %}
+					  {% if product.rating < i %} <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> {% else %} <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> {% endif %}
+					  {% endfor %}</div>
+					{% endif %}
+					{% if product.price %}
+					<p class="price"> {% if not product.special %}
+					  {{ product.price }}
+					  {% else %} <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span> {% endif %}
+					  {% if product.tax %} <span class="price-tax">{{ text_tax }} {{ product.tax }}</span> {% endif %} </p>
+					{% endif %} </div>
+				  <div class="button-group">
+					<button type="button" onclick="cart.add('{{ product.product_id }}');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span></button>
+					<button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i></button>
+					<button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i></button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+        {% endfor %}
+    
+	</div>
+</div>
+{% endfor %}
+
+</div>
+<div class="clearfix"></div>
+</div>
+{% if carousel %}
+<script type="text/javascript">
+$('.grid-holder.prod_module{{ module }}').slick({
+prevArrow: "<a class=\"arrow-left fa fa-angle-left\"></a>",
+nextArrow: "<a class=\"arrow-right fa fa-angle-right\"></a>",
+respondTo:'min',
+rows:{{ rows }},
+{% if columns == '5' %}
+slidesToShow:5,slidesToScroll:5,responsive:[{breakpoint:1100,settings:{slidesToShow:4,slidesToScroll:4}},{breakpoint:960,settings:{slidesToShow:3,slidesToScroll:3}},{breakpoint:600,settings:{slidesToShow:2,slidesToScroll:2}},
+{% elseif columns == '4' %}
+slidesToShow:4,slidesToScroll:4,responsive:[{breakpoint:960,settings:{slidesToShow:3,slidesToScroll:3}},{breakpoint:600,settings:{slidesToShow:2,slidesToScroll:2}},
+{% elseif columns == '3' %}
+slidesToShow:3,slidesToScroll:3,responsive:[{breakpoint:600,settings:{slidesToShow:2,slidesToScroll:2}},
+{% elseif columns == '2' %}
+slidesToShow:2,slidesToScroll:2,responsive:[
+{% elseif columns == '1' or columns == 'list' %}
+adaptiveHeight:true,slidesToShow:1,slidesToScroll:1,responsive:[
+{% endif %}
+{breakpoint:420,settings:{slidesToShow:1,slidesToScroll:1}}
+]
+});
+$(document).ready(function() {
+$('body').addClass('document_ready');
+});
+</script>
+{% endif %}

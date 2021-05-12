@@ -1,0 +1,131 @@
+<footer class="uk-text-zero uk-text-center uk-padding uk-padding-remove-bottom uk-padding-remove-horizontal">
+  <div class="footerWrapper uk-padding uk-padding-remove-top uk-padding-remove-horizontal">
+    <div>
+      <div class="uk-container">
+        <div>
+          <div class="uk-grid-divider uk-grid-large" data-uk-grid>
+            <div class="uk-width-1-1 uk-width-expand@m uk-visible@m">
+              <div>
+                <div data-uk-grid>
+                  <div class="uk-width-1-1 uk-width-1-4@m">
+                    <div>
+                      <h5 class="uk-margin-bottom font">{{ text_productscats }}</h5>
+                      <ul class="uk-padding-remove uk-margin-remove">
+                        <li><a href="https://salamatandishan.net/beans">{{ text_beans }}</a></li>
+                        <li><a href="https://salamatandishan.net/spices">{{ text_spices }}</a></li>
+                        <li><a href="https://salamatandishan.net/flavors">{{ text_flavors }}</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="uk-width-1-1 uk-width-1-4@m">
+                    <div>
+                      <h5 class="uk-margin-bottom font">{{ text_salamatandishan }}</h5>
+                      <ul class="uk-padding-remove uk-margin-remove">
+                        <li><a href="{{ special }}">{{ text_special }}</a></li>
+                        <li><a href="https://salamatandishan.net/about">{{ text_aboutus }}</a></li>
+                        <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="uk-width-1-1 uk-width-1-4@m">
+                    <div>
+                      <h5 class="uk-margin-bottom font">{{ text_account }}</h5>
+                      <ul class="uk-padding-remove uk-margin-remove">
+                        <li><a href="{{ account }}">{{ text_account }}</a></li>
+                        <li><a href="{{ order }}">{{ text_order }}</a></li>
+                        <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  {% if informations %}
+                    <div class="uk-width-1-1 uk-width-1-4@m">
+                      <div>
+                        <h5 class="uk-margin-bottom font">{{ text_information }}</h5>
+                        <ul class="uk-padding-remove uk-margin-remove">
+                          {% for information in informations %}
+                            <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="uk-width-1-1 uk-width-auto@m">
+              <div>
+                <div class="uk-grid-small" data-uk-grid>
+                  <div class="uk-width-1-2 uk-width-auto@m">
+                    <div class="uk-background-muted uk-padding-small uk-border-rounded-medium uk-box-shadow-medium">
+                      <img src="https://ps.w.org/logo-manager-for-enamad/assets/icon-256x256.png" width="90">
+                    </div>
+                  </div>
+                  <div class="uk-width-1-2 uk-width-auto@m">
+                    <div class="uk-background-muted uk-padding-small uk-border-rounded-medium uk-box-shadow-medium">
+                      <img src="https://ps.w.org/logo-manager-for-enamad/assets/icon-256x256.png" width="90">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="socialsWrapper uk-padding uk-padding-remove-top uk-padding-remove-horizontal">
+    <div class="uk-position-relative">
+      <div class="uk-container uk-container-xsmall">
+        <div class="uk-padding-small uk-padding-remove-vertical uk-display-inline-block uk-position-relative wrapper">
+          <div class="uk-flex-center uk-grid-small" data-uk-grid>
+            <div class="uk-width-auto">
+              <a href="#" title="" class="uk-display-inline-block"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#instagram" width="40" height="40" data-uk-svg></a>
+            </div>
+            <div class="uk-width-auto">
+              <a href="#" title="" class="uk-display-inline-block"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#telegram" width="40" height="40" data-uk-svg></a>
+            </div>
+            <div class="uk-width-auto">
+              <a href="#" title="" class="uk-display-inline-block"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#whatsapp" width="40" height="40" data-uk-svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="crWrapper uk-padding uk-padding-remove-top uk-padding-remove-horizontal">
+    <div>
+      <div class="uk-container uk-container-xsmall">
+        <div>
+          <div data-uk-grid>
+            <div class="uk-width-1-1">
+              <p class="uk-text-tiny uk-text-muted font">{{ text_copyright }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+{#
+<a href="#" title="" class="uk-display-inline-block hasDrop"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#instagram" width="40" height="40" data-uk-svg></a>
+<div data-uk-drop="pos: top-center; offset: 12; delay-hide: 0; animation: uk-animation-slide-top-small;" class="top">
+  <div class="uk-card uk-card-default uk-box-shadow-small uk-text-small uk-border-rounded uk-position-relative uk-text-center uk-text-nowrap tooltip favTooltipText"></div>
+</div>
+<div class="uk-width-1-1 uk-width-1-4@m">
+  <div>
+    <h5 class="uk-margin-bottom font">{{ text_extra }}</h5>
+    <ul class="uk-padding-remove uk-margin-remove">
+      <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+      <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+      <li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+      <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
+      <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+      <li><a href="{{ return }}">{{ text_return }}</a></li>
+    </ul>
+  </div>
+</div>
+#}
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+</body></html>

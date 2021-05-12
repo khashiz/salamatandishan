@@ -1,0 +1,27 @@
+<section id="banner{{ module }}" class="uk-padding uk-padding-remove-horizontal uk-padding-remove-top">
+  <div class="uk-container">
+    <div>
+      <div class="uk-child-width-1-1 uk-child-width-1-4@m" data-uk-grid>
+        {% for banner in banners %}
+          <div>
+            {% if banner.link %}
+              <a href="{{ banner.link }}" class="uk-inline-clip uk-transition-toggle uk-display-block uk-border-rounded-medium uk-box-shadow-medium uk-overflow-hidden">
+                <img src="{{ banner.image }}" alt="{{ banner.title }}">
+                <div class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-primary uk-flex uk-flex-center uk-flex-middle uk-margin-remove">
+                  <object>
+                    <a href="{{ banner.link }}" class="uk-button uk-button-primary uk-border-pill uk-box-shadow-small font">{{ text_seeproducts }}</a>
+                  </object>
+                </div>
+              </a>
+              <div>
+                <a href="{{ banner.link }}" class="uk-text-center uk-display-block uk-margin-top uk-text-bold uk-h4 hover yellow font" title="{{ banner.title }}">{{ banner.title }}</a>
+              </div>
+            {% else %}
+              <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

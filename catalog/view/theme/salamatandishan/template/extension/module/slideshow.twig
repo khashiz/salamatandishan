@@ -1,0 +1,24 @@
+<section id="slideshow{{ module }}" class="slideshow uk-padding uk-padding-remove-horizontal">
+  <div class="uk-container">
+    <div>
+      <div data-uk-slideshow="animation: push; ratio: 5:2;" class="uk-position-relative uk-light">
+        <div class="uk-position-relative uk-visible-toggle uk-light">
+          <ul class="uk-slideshow-items uk-box-shadow-medium uk-border-rounded-medium">
+            {% for banner in banners %}
+              <div class="swiper-slide text-center">
+                {% if banner.link %}
+                  <a href="{{ banner.link }}" title="{{ banner.title }}" class="uk-display-block"><img src="{{ banner.image }}" alt="{{ banner.title }}" data-uk-cover /></a>
+                {% else %}
+                  <img src="{{ banner.image }}" alt="{{ banner.title }}" data-uk-cover />
+                {% endif %}
+              </div>
+            {% endfor %}
+          </ul>
+          <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" data-uk-slidenav-next data-uk-slideshow-item="previous"></a>
+          <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" data-uk-slidenav-previous data-uk-slideshow-item="next"></a>
+        </div>
+        <ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin uk-position-bottom-center"></ul>
+      </div>
+    </div>
+  </div>
+</section>

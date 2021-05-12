@@ -1,0 +1,168 @@
+{{ header }}
+  {% if success %}
+    <div class="uk-alert uk-alert-success uk-margin-remove-bottom uk-text-center uk-text-tiny font">{{ success }}</div>
+  {% endif %}
+  {% if error_warning %}
+    <div class="uk-alert uk-alert-danger uk-margin-remove-bottom uk-text-center uk-text-tiny font">{{ error_warning }}</div>
+  {% endif %}
+  {% if attention %}
+    <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ attention }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+  {% endif %}
+<main data-uk-height-viewport="expand: true">
+  <div>
+    <div class="uk-padding-large uk-padding-remove-horizontal">
+      <div>
+        <div id="checkout-cart" class="uk-container">
+          <div class="uk-margin-large-bottom">
+            <h1 class="uk-text-center uk-text-bold uk-text-secondary uk-margin-small-bottom uk-h2 pageTitle font">{{ heading_title }}{% if weight %} ({{ weight }}){% endif %}</h1>
+            <ul class="uk-breadcrumb uk-text-center uk-text-zero uk-margin-remove">
+              {% for breadcrumb in breadcrumbs %}
+                <li><a class="uk-text-tiny uk-text-muted hour yellow font" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="uk-flex-center" data-uk-grid>
+            {{ column_left }}
+            <div class="uk-width-1-1" id="content">
+              <div>
+                <div class="uk-grid-divider uk-text-zero" data-uk-grid>
+                  {{ content_top }}
+                  <div class="uk-width-1-1 uk-width-expand@m">
+                    <form action="{{ action }}" method="post" enctype="multipart/form-data" class="uk-margin-remove saForm">
+                      <fieldset class="uk-margin-remove uk-padding-remove">
+                        <div>
+                          <div>
+                            <div class="uk-child-width-1-1 uk-grid-divider" data-uk-grid>
+                              {% for product in products %}
+                                <div>
+                                  <div class="uk-position-relative">
+                                    {% if not product.stock %}
+                                      <span class="uk-label uk-label-warning uk-position-top-left uk-border-rounded uk-text-tiny font">{{ text_namojood }}</span>
+                                    {% endif %}
+                                    <div class="uk-grid-small" data-uk-grid>
+                                      {% if product.thumb %}
+                                        <div class="uk-width-1-1 uk-width-auto@m">
+                                          <a href="{{ product.href }}" title="{{ product.name }}" class="uk-display-inline-block uk-border-rounded uk-overflow-hidden uk-box-shadow-small">
+                                            <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" width="160" height="120" />
+                                          </a>
+                                        </div>
+                                      {% endif %}
+                                      <div class="uk-width-1-1 uk-width-expand@m">
+                                        <div class="uk-height-1-1">
+                                          <div class="uk-flex uk-flex-column uk-flex-between uk-height-1-1">
+                                            <div class="uk-margin-small-bottom">
+                                              <a href="{{ product.href }}" class="uk-text-secondary hover yellow uk-text-small uk-text-bold font">{{ product.name }}</a>
+                                              {% if product.option %}
+                                                {% for option in product.option %}
+                                                  <br />
+                                                  <small class="uk-text-tiny uk-text-yellow uk-display-inline-block font">{{ option.value }}</small>
+                                                {% endfor %}
+                                              {% endif %}
+                                              {% if product.reward %}
+                                                <br />
+                                                <small>{{ product.reward }}</small>
+                                              {% endif %}
+                                              {% if product.recurring %}
+                                                <br />
+                                                <span class="label label-info">{{ text_recurring_item }}</span>
+                                                <small>{{ product.recurring }}</small>
+                                              {% endif %}
+                                            </div>
+                                            <div>
+                                              <div>
+                                                <div class="uk-grid-small" data-uk-grid>
+                                                  <div class="uk-width-expand">
+                                                  <span class="uk-text-small uk-text-secondary font fnum">
+                                                    {{ product.quantity }} {{ text_adad }}<br>{{ product.total }}
+                                                  </span>
+                                                  </div>
+                                                  <div class="uk-width-auto uk-flex uk-flex-bottom">
+                                                    <div>
+                                                      <div class="uk-child-width-auto uk-grid-small uk-grid-divider" data-uk-grid>
+                                                        <div>
+                                                          <div class="uk-child-width-auto uk-grid-small" data-uk-grid>
+                                                            <div><input type="number" min="1" name="quantity[{{ product.cart_id }}]" value="{{ product.quantity }}" size="1" class="uk-input uk-border-rounded uk-width-1-1 uk-text-right uk-text-secondary font cartQtyInput" /></div>
+                                                            <div><button type="submit" title="{{ button_update }}" class="uk-button uk-button-primary uk-width-1-1 uk-border-rounded uk-padding-remove-horizontal font"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#refresh" width="16" height="16" class="uk-margin-small-left uk-margin-small-right" data-uk-svg></button></div>
+                                                          </div>
+                                                        </div>
+                                                        <div><button class="uk-button uk-button-danger uk-width-1-1 uk-border-rounded uk-padding-remove-horizontal font" type="button" onclick="cart.remove('{{ product.cart_id }}');"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#trash" width="16" height="16" class="uk-margin-small-left uk-margin-small-right" data-uk-svg></button></div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              {% endfor %}
+                              {% for voucher in vouchers %}
+                                <div>
+                                  <td></td>
+                                  <td class="text-left">{{ voucher.description }}</td>
+                                  <td class="text-left"></td>
+                                  <td class="text-left">
+                                    <div class="input-group btn-block" style="max-width: 200px;">
+                                      <input type="text" name="" value="1" size="1" disabled="disabled" class="form-control" />
+                                      <span class="input-group-btn">
+                                    <button type="button" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger" onclick="voucher.remove('{{ voucher.key }}');"><i class="fa fa-times-circle"></i></button>
+                                  </span>
+                                    </div>
+                                  </td>
+                                  <td class="text-right">{{ voucher.amount }}</td>
+                                  <td class="text-right">{{ voucher.amount }}</td>
+                                </div>
+                              {% endfor %}
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
+                  <div class="uk-width-1-1 uk-width-1-3@m">
+                    <div data-uk-sticky="offset: 91; bottom: true;">
+                      <div class="uk-child-width-1-1 uk-grid-small" data-uk-grid>
+                        {% if modules %}
+                          <div>
+                            {% for module in modules %}
+                              {{ module }}
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                        <div>
+                          <div class="uk-background-muted uk-border-rounded uk-padding-small">
+                            <div class="uk-child-width-1-1 uk-grid-small" data-uk-grid>
+                              {% for total in totals %}
+                                <div>
+                                  <div>
+                                    <div class="uk-grid-small" data-uk-grid>
+                                      <div class="uk-width-expand uk-text-muted uk-text-tiny font" data-uk-leader>{{ total.title }}</div>
+                                      <div class="uk-text-secondary uk-text-bold uk-text-small font fnum">{{ total.text }}</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              {% endfor %}
+                            </div>
+                          </div>
+                        </div>
+                        <div><a href="{{ checkout }}" class="uk-button uk-button-primary uk-button-large uk-width-1-1 uk-border-rounded font">{{ text_purchase_next_step }}</a></div>
+                      </div>
+                    </div>
+                  </div>
+                  {{ content_bottom }}
+                </div>
+              </div>
+            </div>
+            {{ column_right }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{ footer }}

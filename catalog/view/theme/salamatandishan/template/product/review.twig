@@ -1,0 +1,40 @@
+{% if reviews %}
+  <div class="uk-child-width-1-1 uk-grid-small uk-grid-divider uk-text-zero uk-margin-medium-bottom" data-uk-grid>
+    {% for review in reviews %}
+      <div>
+        <div>
+          <div>
+            <div class="uk-margin-small-bottom" data-uk-grid>
+              <div class="uk-width-expand">
+                <div>
+                  <div class="uk-grid-divider uk-grid-small" data-uk-grid>
+                    <div class="uk-text-tiny uk-text-secondary font">{{ review.author }}</div>
+                    <div class="uk-text-tiny uk-text-muted font fnum">{{ review.date_added }}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="uk-width-auto">
+                {% for i in 1..5 %}
+                  {% if review.rating < i %}
+                    <img class="uk-text-muted" src="catalog/view/theme/salamatandishan/image/sprite.svg#star" width="16" height="16" data-uk-svg>
+                  {% else %}
+                    <img class="uk-text-yellow" src="catalog/view/theme/salamatandishan/image/sprite.svg#star" width="16" height="16" data-uk-svg>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="uk-text-small uk-text-secondary uk-text-justify uk-margin-remove font">{{ review.text }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div>{{ pagination }}</div>
+{% else %}
+  <div class="uk-text-center uk-text-muted uk-margin-top uk-margin-medium-bottom">
+    <div class="uk-margin-bottom"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#comment" width="48" height="48" data-uk-svg></div>
+    <p class="uk-margin-remove uk-text-tiny font">{{ text_no_reviews }}</p>
+  </div>
+{% endif %}

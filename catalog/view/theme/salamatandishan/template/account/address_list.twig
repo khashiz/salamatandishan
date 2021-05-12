@@ -1,0 +1,79 @@
+{{ header }}
+  {% if success %}
+    <div class="uk-alert uk-alert-success uk-margin-remove-bottom uk-text-center uk-text-tiny font">{{ success }}</div>
+  {% endif %}
+  {% if error_warning %}
+    <div class="uk-alert uk-alert-danger uk-margin-remove-bottom uk-text-center uk-text-tiny font">{{ error_warning }}</div>
+  {% endif %}
+<main data-uk-height-viewport="expand: true">
+  <div>
+    <div class="uk-padding-large uk-padding-remove-horizontal">
+      <div>
+        <div id="account-address" class="uk-container">
+          <div class="uk-margin-large-bottom">
+            <h1 class="uk-text-center uk-text-bold uk-text-secondary uk-margin-small-bottom uk-h2 pageTitle font">{{ heading_title }}</h1>
+            <ul class="uk-breadcrumb uk-text-center uk-text-zero uk-margin-remove">
+              {% for breadcrumb in breadcrumbs %}
+                <li><a class="uk-text-tiny uk-text-muted hover yellow font" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="uk-flex-center" data-uk-grid>
+            {{ column_left }}
+            <div class="uk-width-1-1 uk-width-1-{% if addresses %}2{% else %}3{% endif %}@m" id="content">
+              <div>
+                <div class="uk-grid-divider uk-text-zero" data-uk-grid>
+                  {{ content_top }}
+                  <div class="uk-width-1-1">
+                    <div>
+                      {% if addresses %}
+                        <div class="table-responsive">
+                          <div class="uk-grid-small uk-child-width-1-1" data-uk-grid>
+                            {% for result in addresses %}
+                              <div>
+                                <div class="uk-inline-clip uk-width-1-1 uk-transition-toggle uk-border-rounded uk-overflow-hidden">
+                                  <div>
+                                    <div class="uk-background-muted uk-padding-small uk-text-tiny uk-text-secondary font">{{ result.address }}</div>
+                                  </div>
+                                  <div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-primary uk-flex uk-flex-center uk-flex-middle">
+                                    <div>
+                                      <div class="uk-grid-small uk-child-width-auto" data-uk-grid>
+                                        <div><a href="{{ result.update }}" class="uk-button uk-button-primary uk-button-small uk-text-tiny uk-width-1-1 uk-border-rounded font">{{ button_edit }}</a></div>
+                                        <div><a href="{{ result.delete }}" class="uk-button uk-button-danger uk-button-small uk-text-tiny uk-width-1-1 uk-border-rounded font">{{ button_delete }}</a></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      {% else %}
+                        <div class="uk-grid-small uk-child-width-1-1 uk-flex-center uk-text-center" data-uk-grid>
+                          <div class="uk-text-muted"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#map" class="uk-preserve-width" width="32" height="32" alt="{{ text_address }}" data-uk-svg></div>
+                          <div><p class="uk-text-tiny uk-text-muted uk-text-center font">{{ text_empty }}</p></div>
+                          <div class="uk-width-1-1 uk-width-auto@m"><a class="uk-button uk-button-primary uk-width-1-1 uk-border-rounded font" href="{{ add }}" class="btn btn-primary">{{ button_new_address }}</a></div>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="uk-width-1-1">
+                    <div>
+                      <div data-uk-grid>
+                        <div class="uk-width-auto"><a href="{{ add }}" class="uk-button uk-button-primary uk-width-1-1 uk-border-rounded font">{{ button_new_address }}</a></div>
+                        <div class="uk-width-expand uk-flex uk-flex-middle uk-flex-left"><a href="{{ back }}" class="uk-text-tiny uk-text-muted hover yellow font">{{ button_back }}</a></div>
+                      </div>
+                    </div>
+                  </div>
+                  {{ content_bottom }}
+                </div>
+              </div>
+            </div>
+            {{ column_right }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{ footer }}

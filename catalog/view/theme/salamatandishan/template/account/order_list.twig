@@ -1,0 +1,82 @@
+{{ header }}
+<main data-uk-height-viewport="expand: true">
+  <div>
+    <div class="uk-padding-large uk-padding-remove-horizontal">
+      <div>
+        <div id="account-order" class="uk-container">
+          <div class="uk-margin-large-bottom">
+            <h1 class="uk-text-center uk-text-bold uk-text-secondary uk-margin-small-bottom uk-h2 pageTitle font">{{ heading_title }}</h1>
+            <ul class="uk-breadcrumb uk-text-center uk-text-zero uk-margin-remove">
+              {% for breadcrumb in breadcrumbs %}
+                <li><a class="uk-text-tiny uk-text-muted hover yellow font" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="uk-flex-center" data-uk-grid>
+            {{ column_left }}
+            <div class="uk-width-1-1 uk-width-1-{% if orders %}2{% else %}3{% endif %}@m" id="content">
+              <div>
+                <div class="uk-grid-divider uk-text-zero" data-uk-grid>
+                  {{ content_top }}
+                  <div class="uk-width-1-1">
+                    <div>
+                      {% if orders %}
+                        <div class="table-responsive">
+                          <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                              <td class="text-right">{{ column_order_id }}</td>
+                              <td class="text-left">{{ column_customer }}</td>
+                              <td class="text-right">{{ column_product }}</td>
+                              <td class="text-left">{{ column_status }}</td>
+                              <td class="text-right">{{ column_total }}</td>
+                              <td class="text-left">{{ column_date_added }}</td>
+                              <td></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for order in orders %}
+                              <tr>
+                                <td class="text-right">#{{ order.order_id }}</td>
+                                <td class="text-left">{{ order.name }}</td>
+                                <td class="text-right">{{ order.products }}</td>
+                                <td class="text-left">{{ order.status }}</td>
+                                <td class="text-right">{{ order.total }}</td>
+                                <td class="text-left">{{ order.date_added }}</td>
+                                <td class="text-right"><a href="{{ order.view }}" data-toggle="tooltip" title="{{ button_view }}" class="btn btn-info"><i class="fa fa-eye"></i></a></td>
+                              </tr>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-6 text-left">{{ pagination }}</div>
+                          <div class="col-sm-6 text-right">{{ results }}</div>
+                        </div>
+                      {% else %}
+                        <div class="uk-grid-small uk-child-width-1-1 uk-flex-center uk-text-center" data-uk-grid>
+                          <div class="uk-text-muted"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#box-open" class="uk-preserve-width" width="32" height="32" alt="{{ text_address }}" data-uk-svg></div>
+                          <div><p class="uk-text-tiny uk-text-muted uk-text-center font">{{ text_empty }}</p></div>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="uk-width-1-1">
+                    <div>
+                      <div class="uk-grid-small uk-flex-center uk-child-width-auto uk-grid-divider" data-uk-grid>
+                        <div><a href="{{ continue }}" class="uk-text-tiny uk-text-muted hover yellow font">{{ button_back }}</a></div>
+                      </div>
+                    </div>
+                  </div>
+                  {{ content_bottom }}
+                </div>
+              </div>
+            </div>
+            {{ column_right }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{ footer }}

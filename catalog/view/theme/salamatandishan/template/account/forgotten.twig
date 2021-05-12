@@ -1,0 +1,58 @@
+{{ header }}
+  {% if error_warning %}
+    <div class="uk-alert uk-alert-danger uk-margin-remove-bottom uk-text-center uk-text-tiny font">{{ error_warning }}</div>
+  {% endif %}
+<main data-uk-height-viewport="expand: true">
+  <div>
+    <div class="uk-padding-large uk-padding-remove-horizontal">
+      <div>
+        <div id="account-forgotten" class="uk-container">
+          <div class="uk-margin-large-bottom">
+            <h1 class="uk-text-center uk-text-bold uk-text-secondary uk-margin-small-bottom uk-h2 pageTitle font">{{ heading_title }}</h1>
+            <ul class="uk-breadcrumb uk-text-center uk-text-zero uk-margin-remove">
+              {% for breadcrumb in breadcrumbs %}
+                <li><a class="uk-text-tiny uk-text-muted hour yellow font" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="uk-flex-center" data-uk-grid>
+            {{ column_left }}
+            <div class="uk-width-1-1 uk-width-1-3@m" id="content">
+              <div>
+                <div class="uk-grid-divider uk-text-zero" data-uk-grid>
+                  {{ content_top }}
+                  <div class="uk-width-1-1">
+                    <p class="uk-text-tiny uk-text-muted uk-text-center font">{{ text_email }}</p>
+                    <form action="{{ action }}" method="post" enctype="multipart/form-data" class="uk-margin-remove saForm">
+                      <fieldset class="uk-padding-remove uk-margin-remove">
+                        <div class="uk-grid-medium uk-child-width-1-1" data-uk-grid>
+                          <div class="form-group required">
+                            <label class="uk-form-label uk-margin-small-bottom uk-text-secondary uk-display-block uk-text-bold font" for="input-email">{{ entry_email }}</label>
+                            <div>
+                              <input type="text" name="email" value="{{ email }}" id="input-email" class="uk-input uk-border-rounded uk-width-1-1 uk-text-left ltr uk-text-secondary font" autofocus />
+                            </div>
+                          </div>
+                          <div><input type="submit" value="{{ button_continue }}" class="uk-button uk-button-primary uk-width-1-1 uk-border-rounded font" /></div>
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
+                  <div class="uk-width-1-1">
+                    <div>
+                      <div class="uk-grid-small uk-flex-center uk-child-width-auto uk-grid-divider" data-uk-grid>
+                        <div><a href="{{ back }}" class="uk-text-tiny uk-text-muted hover yellow font">{{ button_back }}</a></div>
+                      </div>
+                    </div>
+                  </div>
+                  {{ content_bottom }}
+                </div>
+              </div>
+            </div>
+            {{ column_right }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{ footer }}

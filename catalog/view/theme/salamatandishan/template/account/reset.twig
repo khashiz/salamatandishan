@@ -1,0 +1,66 @@
+{{ header }}
+<main data-uk-height-viewport="expand: true">
+  <div>
+    <div class="uk-padding-large uk-padding-remove-horizontal">
+      <div>
+        <div id="account-reset" class="uk-container">
+          <div class="uk-margin-large-bottom">
+            <h1 class="uk-text-center uk-text-bold uk-text-secondary uk-margin-small-bottom uk-h2 pageTitle font">{{ heading_title }}</h1>
+            <ul class="uk-breadcrumb uk-text-center uk-text-zero uk-margin-remove">
+              {% for breadcrumb in breadcrumbs %}
+                <li><a class="uk-text-tiny uk-text-muted hover yellow font" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="uk-flex-center" data-uk-grid>
+            {{ column_left }}
+            <div class="uk-width-1-1 uk-width-1-2@m" id="content">
+              <div>
+                <div class="uk-grid-divider uk-text-zero" data-uk-grid>
+                  {{ content_top }}
+                  <div class="uk-width-1-1">
+                    <form action="{{ action }}" method="post" enctype="multipart/form-data" class="uk-margin-remove saForm">
+                      <fieldset class="uk-padding-remove uk-margin-remove">
+                        <div class="uk-grid-medium uk-child-width-1-1 uk-child-width-1-2@m" data-uk-grid>
+                          <div class="form-group">
+                            <label class="uk-form-label uk-margin-small-bottom uk-text-secondary uk-display-block uk-text-bold font" for="input-password">{{ entry_password }}</label>
+                            <div class="col-sm-10">
+                              <input type="password" name="password" value="{{ password }}" id="input-password" class="uk-input uk-border-rounded uk-width-1-1 uk-text-right uk-text-secondary font" autofocus />
+                              {% if error_password %}
+                                <div class="uk-text-tiny uk-text-danger uk-margin-small-top font">{{ error_password }}</div>
+                              {% endif %}
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="uk-form-label uk-margin-small-bottom uk-text-secondary uk-display-block uk-text-bold font" for="input-confirm">{{ entry_confirm }}</label>
+                            <div class="col-sm-10">
+                              <input type="password" name="confirm" value="{{ confirm }}" id="input-confirm" class="uk-input uk-border-rounded uk-width-1-1 uk-text-right uk-text-secondary font" />
+                              {% if error_confirm %}
+                                <div class="uk-text-tiny uk-text-danger uk-margin-small-top font">{{ error_confirm }}</div>
+                              {% endif %}
+                            </div>
+                          </div>
+                          <div><button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-border-rounded font">{{ heading_title }}</button></div>
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
+                  <div class="uk-width-1-1">
+                    <div>
+                      <div class="uk-grid-small uk-flex-center uk-child-width-auto uk-grid-divider" data-uk-grid>
+                        <div><a href="{{ back }}" class="uk-text-tiny uk-text-muted hover yellow font">{{ button_back }}</a></div>
+                      </div>
+                    </div>
+                  </div>
+                  {{ content_bottom }}
+                </div>
+              </div>
+            </div>
+            {{ column_right }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{ footer }}

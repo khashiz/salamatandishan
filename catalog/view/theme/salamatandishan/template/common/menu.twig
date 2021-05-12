@@ -1,0 +1,79 @@
+{% if categories %}
+<nav class="uk-height-1-1 uk-flex uk-flex uk-flex-middle uk-text-zero">
+  <ul class="uk-padding-remove uk-margin-remove uk-flex uk-flex-center uk-flex-1 uk-visible@m">
+    <li><a href="https://salamatandishan.net" title="{{ text_home }}" target="_self">{{ text_home }}</a></li>
+    {% for category in categories %}
+      {% if category.children %}
+        <li class="dropdown">
+          <a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }}</a>
+          <div class="uk-drop" data-uk-drop="offset:0;delay-hide:200;animation:uk-animation-slide-bottom-small;duration:200;pos:bottom-right;">
+            <div class="uk-card uk-card-body uk-card-default uk-padding-remove uk-box-shadow-small">
+              {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+                <ul class="list-unstyled">
+                  {% for child in children %}
+                    <li><a href="{{ child.href }}">{{ child.name }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endfor %}
+            </div>
+            <a href="{{ category.href }}" class="see-all">{{ text_all }} {{ category.name }}</a> </div>
+        </li>
+      {% else %}
+        <li><a href="{{ category.href }}">{{ category.name }}</a></li>
+      {% endif %}
+    {% endfor %}
+    <li><a href="https://salamatandishan.net/about" title="{{ text_about }}" target="_self">{{ text_about }}</a></li>
+    <li><a href="https://salamatandishan.net/contact" title="{{ text_contact }}" target="_self">{{ text_contact }}</a></li>
+  </ul>
+  <div class="uk-flex-1 uk-hidden@m">
+    <div class="uk-text-center uk-grid-small" data-uk-grid>
+      <div class="uk-width-1-3"><a href="#hamburgerMenu" data-uk-toggle class="uk-flex uk-flex-center uk-flex-middle uk-border-circle uk-padding-small iconWrapper"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#bars" width="18" height="18" data-uk-svg></a></div>
+      <div class="uk-width-1-3"><a href="#searchModal" data-uk-toggle class="uk-flex uk-flex-center uk-flex-middle uk-border-circle uk-padding-small iconWrapper"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#search" width="18" height="18" data-uk-svg></a></div>
+      <div class="uk-width-1-3"><a href="tel:09173769217" class="uk-flex uk-flex-center uk-flex-middle uk-border-circle uk-padding-small iconWrapper"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#phone" width="18" height="18" data-uk-svg></a></div>
+    </div>
+  </div>
+</nav>
+{% endif %}
+
+<div id="hamburgerMenu" data-uk-offcanvas="overlay: true;">
+  <div class="uk-offcanvas-bar uk-padding-remove uk-box-shadow-small">
+    <div class="uk-flex uk-flex-column uk-height-1-1">
+      <div class="uk-width-expand">
+        <div class="offcanvasTop uk-box-shadow-small uk-position-relative">
+          <div class="uk-grid-collapse uk-height-1-1 uk-grid uk-grid-stack" data-uk-grid="">
+            <div class="uk-flex uk-width-1-3 uk-flex uk-flex-center uk-flex-middle"><a onclick="UIkit.offcanvas('#offcanvas-overlay').hide();" class="uk-flex uk-flex-center uk-flex-middle uk-height-1-1 uk-width-1-1 uk-margin-remove"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#chevron-right" width="24" height="24" data-uk-svg></a></div>
+            <div class="uk-flex uk-width-1-3 uk-flex uk-flex-center uk-flex-middle"><a href="https://salamatandishan.net" class="uk-flex uk-flex-center uk-flex-middle uk-height-1-1 uk-width-1-1 uk-margin-remove"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#home" width="28" height="28" data-uk-svg></a></div>
+            <div class="uk-flex uk-width-1-3 uk-flex uk-flex-center uk-flex-middle"><a href="tel:09173769217" class="uk-flex uk-flex-center uk-flex-middle uk-height-1-1 uk-width-1-1 uk-margin-remove"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#phone" width="24" height="24" data-uk-svg></a></div>
+          </div>
+        </div>
+        <div class="uk-padding-small">
+          <ul class="uk-nav-default uk-nav-parent-icon" data-uk-nav>
+            <li><a href="https://salamatandishan.net" title="{{ text_home }}" target="_self">{{ text_home }}</a></li>
+            <li class="uk-parent">
+              <a href="#">محصولات</a>
+              <ul class="nav-child">
+                {% for category in categories %}
+                  {% if category.children %}
+                  {% else %}
+                    <li><a href="{{ category.href }}">{{ category.name }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            <li class="uk-parent uk-hidden">
+              <a href="#">سلامت اندیشان</a>
+              <ul class="nav-child">
+                <li><a href="#">درباره ما</a></li>
+                <li><a href="#">اهداف شرکت</a></li>
+                <li><a href="#">خدمات ما</a></li>
+                <li><a href="#">کارخانه تایسو</a></li>
+              </ul>
+            </li>
+            <li><a href="https://salamatandishan.net/about" title="درباره ما" target="_self">درباره ما</a></li>
+            <li><a href="https://salamatandishan.net/contact" title="تماس با ما" target="_self">تماس با ما</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

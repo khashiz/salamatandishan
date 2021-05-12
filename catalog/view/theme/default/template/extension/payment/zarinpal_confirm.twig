@@ -1,0 +1,49 @@
+{{ header }}
+<main data-uk-height-viewport="expand: true">
+  <div>
+    <div class="uk-padding-large uk-padding-remove-horizontal">
+      <div>
+        <div id="common-success" class="uk-container">
+          {% if error_warning == "" %}
+          <div class="uk-margin-large-bottom">
+            <h1 class="uk-text-center uk-text-bold uk-text-secondary uk-margin-small-bottom uk-h2 pageTitle font">{{ heading_title }}</h1>
+          </div>
+          {% endif %}
+          <div class="uk-flex-center" data-uk-grid>
+            {{ column_left }}
+            <div class="uk-width-1-1 uk-width-1-2@m" id="content">
+              <div>
+                <div class="uk-grid-divider uk-text-zero" data-uk-grid>
+                  {{ content_top }}
+                  {% if error_warning %}
+                    <div class="uk-width-1-1 uk-text-center">
+                      <div class="uk-text-danger uk-margin-bottom"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#times-circle" width="48" height="48" data-uk-svg></div>
+                      <p class="uk-text-muted uk-text-tiny uk-margin-remove font">{{ error_warning }}</p>
+                    </div>
+                  {% endif %}
+                  {% if error_warning == "" %}
+                  <div class="uk-width-1-1">
+                    <div data-uk-spinner></div>
+                    <div>{{ text_results }}</div>
+                    <div>{{ results }}</div>
+                  </div>
+                  <div class="uk-width-1-1">
+                    <div>
+                      <div class="uk-grid-small uk-flex-center uk-child-width-auto uk-grid-divider" data-uk-grid>
+                        <div><a href="{{ continue }}" class="uk-text-tiny uk-text-muted hover yellow font">{{ button_continue }}</a></div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {{ content_bottom }}
+                </div>
+              </div>
+            </div>
+            {{ column_right }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{ footer }}

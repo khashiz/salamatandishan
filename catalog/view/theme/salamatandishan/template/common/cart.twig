@@ -1,0 +1,120 @@
+<div class="cartWrapper" id="cart">
+  <a href="#" title="{{ text_cart }}" class="uk-display-inline-block uk-visible@m uk-position-relative icon">
+    <img src="catalog/view/theme/salamatandishan/image/sprite.svg#shopping-bag" width="24" height="24" class="uk-preserve-width" data-uk-svg>
+    {% if products or vouchers %}<span class="uk-position-absolute uk-flex uk-flex-center uk-flex-middle uk-text-zero cartCheck"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#check" class="uk-preserve-width" width="6" height="6" data-uk-svg></span>{% endif %}
+  </a>
+  <div class="uk-visible@m uk-text-zero" data-uk-drop>
+    <div>
+      <div class="uk-card uk-card-default uk-padding-remove">
+        <div class="uk-card-body uk-border-rounded uk-box-shadow-small uk-padding-remove">
+          <div>
+            {% if products or vouchers %}
+              <div class="uk-padding-small">
+                <div class="uk-grid-small" data-uk-grid>
+                  <div class="uk-width-expand"><span id="cart-total" class="uk-text-tiny uk-text-muted fnum font">{{ text_items }}</span></div>
+                  <div class="uk-width-auto"><a class="uk-text-secondary uk-text-bold uk-text-tiny hover yellow font" href="{{ cart }}">{{ text_cart }}</a></div>
+                </div>
+              </div>
+              <hr class="uk-margin-remove">
+              <div class="uk-padding-small">
+                <div class="uk-child-width-1-1 uk-grid-divider uk-grid-small" data-uk-grid>
+                  {% for product in products %}
+                    <div>
+                      <div>
+                        <div>
+                          <div class="uk-grid-small" data-uk-grid>
+                            {% if product.thumb %}
+                              <div class="uk-width-auto">
+                                <a href="{{ product.href }}" title="{{ product.name }}" class="uk-display-inline-block uk-border-rounded uk-overflow-hidden uk-box-shadow-small">
+                                  <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" width="100" height="75" />
+                                </a>
+                              </div>
+                            {% endif %}
+                            <div class="uk-width-expand">
+                              <div class="uk-height-1-1">
+                                <div class="uk-flex uk-flex-column uk-flex-between uk-height-1-1">
+                                  <div>
+                                    <a href="{{ product.href }}" class="uk-text-secondary hover yellow uk-text-small uk-text-bold font">{{ product.name }}</a>
+                                    {% if product.option %}
+                                      {% for option in product.option %}
+                                        <br />
+                                        - <small class="uk-text-tiny uk-text-yellow font fnum">{{ option.value }}</small>
+                                      {% endfor %}
+                                    {% endif %}
+                                    {% if product.recurring %}
+                                      <br />
+                                      - <small>{{ text_recurring }} {{ product.recurring }}</small>
+                                    {% endif %}
+                                  </div>
+                                  <div>
+                                    <div>
+                                      <div class="uk-grid-small" data-uk-grid>
+                                        <div class="uk-width-expand">
+                                          <span class="uk-text-tiny uk-text-muted font fnum">
+                                            {{ product.quantity }} {{ text_adad }}<br>{{ product.total }}
+                                          </span>
+                                        </div>
+                                        <div class="uk-width-auto uk-flex uk-flex-bottom">
+                                          <a href="javascript:void(0);" class="uk-padding-remove font cartRemoveBtn" type="button" onclick="cart.remove('{{ product.cart_id }}');" data-uk-tooltip="title: {{ button_remove }}; pos: right; offset: 10;"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#trash" width="16" height="16" data-uk-svg></a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                  {% for voucher in vouchers %}
+                    <div>
+                      <td class="text-center"></td>
+                      <td class="text-left">{{ voucher.description }}</td>
+                      <td class="text-right">x&nbsp;1</td>
+                      <td class="text-right">{{ voucher.amount }}</td>
+                      <td class="text-center text-danger"><button type="button" onclick="voucher.remove('{{ voucher.key }}');" title="{{ button_remove }}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+              <hr class="uk-margin-remove">
+              <div class="uk-padding-small">
+                <div class="uk-grid-small" data-uk-grid>
+                  <div class="uk-width-expand uk-flex uk-flex-middle">
+                    <div>
+                      <span class="uk-text-tiny uk-text-muted font">{{ text_ghabelpardakht }}</span>
+                      <br>
+                      <span class="uk-text-small uk-text-bold uk-text-secondary font fnum cart-total" id="cartModTotal"></span>
+                    </div>
+                    <span id="cart-total" class="uk-hidden">
+                      <table>
+                        {% for total in totals %}
+                          <tr>
+                            <td><strong>{{ total.title }}</strong></td>
+                            <td>{{ total.text }}</td>
+                          </tr>
+                        {% endfor %}
+                      </table>
+                    </span>
+                  </div>
+                  <div class="uk-width-auto"><a class="uk-button uk-button-primary uk-border-rounded font" href="{{ checkout }}">{{ text_checkout }}</a></div>
+                </div>
+              </div>
+            {% else %}
+              <div class="uk-text-center uk-text-muted uk-padding">
+                <div class="uk-margin-bottom"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#shopping-bag" width="48" height="48" data-uk-svg></div>
+                <p class="uk-margin-remove uk-text-tiny font">{{ text_empty }}</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="https://salamatandishan.net/index.php?route=checkout/cart" title="{{ text_cart }}" class="uk-display-inline-block uk-hidden@m uk-position-relative uk-margin-small-right icon">
+    <img src="catalog/view/theme/salamatandishan/image/sprite.svg#shopping-bag" width="32" height="32" class="uk-preserve-width" data-uk-svg>
+    {% if products or vouchers %}<span class="uk-position-absolute uk-flex uk-flex-center uk-flex-middle uk-text-zero cartCheck"><img src="catalog/view/theme/salamatandishan/image/sprite.svg#check" class="uk-preserve-width" width="6" height="6" data-uk-svg></span>{% endif %}
+  </a>
+</div>

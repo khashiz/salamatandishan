@@ -1,0 +1,28 @@
+{{ header }}
+  {% if error_warning %}
+    <div class="uk-alert uk-alert-danger uk-margin-remove-bottom uk-text-center uk-text-tiny font">{{ error_warning }}</div>
+  {% endif %}
+<main data-uk-height-viewport="expand: true">
+  <div>
+    <div class="uk-padding-large uk-padding-remove-horizontal">
+      <div>
+        <div id="container" class="uk-container">
+          <div class="uk-flex-center" data-uk-grid>
+            {{ column_left }}
+            <div class="uk-width-1-1" id="content">
+              <div>
+                <div class="uk-grid-divider uk-text-zer" data-uk-grid>
+                  {{ content_top }}
+                  <div class="uk-width-1-1">{{ d_quickcheckout }}</div>
+                  {{ content_bottom }}
+                </div>
+              </div>
+            </div>
+            {{ column_right }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{ footer }}

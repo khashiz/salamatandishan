@@ -1,0 +1,115 @@
+{{ header }}
+<main data-uk-height-viewport="expand: true">
+  <div>
+    <div class="uk-padding-large uk-padding-remove-horizontal">
+      <div>
+        <div id="information-contact" class="uk-container">
+          <div class="uk-margin-large-bottom">
+            <h1 class="uk-text-center uk-text-bold uk-text-secondary uk-margin-small-bottom uk-h2 pageTitle font">{{ heading_title }}</h1>
+            <ul class="uk-breadcrumb uk-text-center uk-text-zero uk-margin-remove">
+              {% for breadcrumb in breadcrumbs %}
+                <li><a class="uk-text-tiny uk-text-muted font" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div data-uk-grid>
+            {{ column_left }}
+            <div class="uk-width-1-1 uk-width-expand@m" id="content">
+              <div>
+                <div class="uk-grid-divider uk-text-zero" data-uk-grid>
+                  {{ content_top }}
+                  <div class="uk-width-1-1 uk-width-expand@m">
+                    <h3 class="uk-text-bold uk-text-yellow uk-h4 font">{{ text_contact }}</h3>
+                    <form action="{{ action }}" method="post" enctype="multipart/form-data" class="uk-margin-remove saForm">
+                      <fieldset class="uk-padding-remove uk-margin-remove">
+                        <div class="uk-grid-medium" data-uk-grid>
+                          <div class="uk-width-1-1 uk-width-1-2@m required">
+                            <label class="uk-form-label uk-margin-small-bottom uk-text-secondary uk-display-block uk-text-bold font" for="input-name">{{ entry_name }}</label>
+                            <div>
+                              <input type="text" name="name" value="{{ name }}" id="input-name" class="uk-input uk-border-rounded uk-width-1-1 uk-text-right uk-text-secondary font" autofocus />
+                              {% if error_name %}
+                                <div class="uk-text-tiny uk-text-danger uk-margin-small-top font">{{ error_name }}</div>
+                              {% endif %}
+                            </div>
+                          </div>
+                          <div class="uk-width-1-1 uk-width-1-2@m required">
+                            <label class="uk-form-label uk-margin-small-bottom uk-text-secondary uk-display-block uk-text-bold font" for="input-email">{{ entry_email }}</label>
+                            <div>
+                              <input type="email" name="email" value="{{ email }}" id="input-email" class="uk-input uk-border-rounded uk-width-1-1 uk-text-left uk-text-secondary ltr font" />
+                              {% if error_email %}
+                                <div class="uk-text-tiny uk-text-danger uk-margin-small-top font">{{ error_email }}</div>
+                              {% endif %}
+                            </div>
+                          </div>
+                          <div class="uk-width-1-1 required">
+                            <label class="uk-form-label uk-margin-small-bottom uk-text-secondary uk-display-block uk-text-bold font" for="input-enquiry">{{ entry_enquiry }}</label>
+                            <div>
+                              <textarea name="enquiry" rows="5" id="input-enquiry" class="uk-textarea uk-border-rounded uk-width-1-1 uk-text-right uk-text-secondary font">{{ enquiry }}</textarea>
+                              {% if error_enquiry %}
+                                <div class="uk-text-tiny uk-text-danger uk-margin-small-top font">{{ error_enquiry }}</div>
+                              {% endif %}
+                            </div>
+                          </div>
+                          {{ captcha }}
+                          <div class="uk-width-1-1 uk-width-1-2@m"><input class="uk-button uk-button-primary uk-width-1-1 uk-border-rounded font" type="submit" value="{{ button_submit }}" /></div>
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
+                  <div class="uk-width-1-1 uk-width-1-3@m">
+                    <h3 class="uk-text-bold uk-text-yellow uk-h4 font">{{ text_location }}</h3>
+                    {% if locations %}
+                      <div class="uk-child-width-1-1 uk-grid-divider uk-grid-medium" data-uk-grid>
+                        {% for location in locations %}
+                          <div>
+                            <h4 class="uk-text-bold uk-h6 uk-text-secondary uk-margin-small-bottom font" {{ location.location_id }}>{{ location.name }}</h4>
+                            <ul class="uk-padding-remove uk-margin-remove uk-list">
+                              {% if location.image %}
+                                <li><img src="{{ location.image }}" alt="{{ location.name }}" title="{{ location.name }}" class="img-thumbnail" /></li>
+                              {% endif %}
+                              <li>
+                                <address class="uk-margin-remove uk-text-tiny uk-text-secondary font">{{ location.address }}</address>
+                                {% if location.geocode %}
+                                  <a href="https://maps.google.com/maps?q={{ location.geocode|url_encode }}&hl={{ geocode_hl }}&t=m&z=15" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> {{ button_map }}</a>
+                                {% endif %}
+                              </li>
+                              <li>
+                                <span class="uk-text-tiny uk-text-muted font">{{ text_telephone }}</span>
+                                <a href="tel:{{ location.telephone }}" class="uk-text-tiny uk-text-secondary font fnum">{{ location.telephone }}</a>
+                              </li>
+                              {% if location.fax %}
+                                <li>
+                                  <strong>{{ text_fax }}</strong><br>
+                                  {{ location.fax }}
+                                </li>
+                              {% endif %}
+                              {% if location.open %}
+                                <li>
+                                  <strong>{{ text_open }}</strong>
+                                  {{ location.open }}
+                                </li>
+                              {% endif %}
+                              {% if location.comment %}
+                                <li>
+                                  <strong>{{ text_comment }}</strong>
+                                  {{ location.comment }}
+                                </li>
+                              {% endif %}
+                            </ul>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  </div>
+                  {{ content_bottom }}
+                </div>
+              </div>
+            </div>
+            {{ column_right }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{ footer }}
