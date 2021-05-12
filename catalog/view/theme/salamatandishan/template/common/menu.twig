@@ -54,6 +54,7 @@
               <ul class="nav-child">
                 {% for category in categories %}
                   {% if category.children %}
+                    <li><a href="{{ category.href }}">{{ category.name }}</a></li>
                   {% else %}
                     <li><a href="{{ category.href }}">{{ category.name }}</a></li>
                   {% endif %}
